@@ -11,8 +11,10 @@
     <dubbo:protocol name="dubbo" port="20881"></dubbo:protocol>
     
 	<dubbo:application name="pinyougou-sellergoods-service"/>
-    <dubbo:registry address="zookeeper://192.168.25.130:2181"/>
+    <dubbo:registry address="zookeeper://192.168.25.136:2181"/>
     <dubbo:annotation package="com.jarvis.pinyougou.service.impl" />
-   
-   
+   <!--设置dubbo超时时间-->
+	<dubbo:provider timeout="5000000" />
+
+
 </beans>
