@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jarvis.pinyougou.mapper.TbSpecificationMapper" >
+<mapper namespace="com.jarvis.pinyougou.dao.mapper.TbSpecificationMapper" >
   <resultMap id="BaseResultMap" type="com.jarvis.pinyougou.pojo.TbSpecification" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="spec_name" property="specName" jdbcType="VARCHAR" />
@@ -97,6 +97,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jarvis.pinyougou.pojo.TbSpecification" >
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
     insert into tb_specification (id, spec_name)
     values (#{id,jdbcType=BIGINT}, #{specName,jdbcType=VARCHAR})
   </insert>
@@ -161,4 +164,9 @@
     set spec_name = #{specName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <!--规格查询，返回id与name的map-->
+  <select id="selectOptionList" resultType="java.util.Map">
+  	select id,spec_name as text from tb_specification
+  </select>
 </mapper>

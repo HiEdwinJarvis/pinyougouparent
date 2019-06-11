@@ -4,6 +4,7 @@ import com.jarvis.entity.PageResult;
 import com.jarvis.pinyougou.pojo.TbBrand;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description:
@@ -37,4 +38,7 @@ public interface BrandService {
     * 查找
     * */
     public PageResult findPage(TbBrand brand, int pageNum,int pageSize);
+
+    //查找所有品牌，在下拉列表中显示，id与name以map的方式在list中返回
+    public List<Map> selectOptionList();
 }

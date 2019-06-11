@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.dubbo.config.annotation.Reference;
 
 import java.util.List;
+import java.util.Map;
+
 /**
 * 品牌Controller
 *
@@ -88,5 +90,15 @@ public class BrandController {
 	@RequestMapping("/search")
 	public PageResult search(@RequestBody TbBrand brand,int page,int size){
 		return brandService.findPage(brand, page, size);
+	}
+
+	/***
+	 * 返回下拉列表中的品牌信息
+	 * @return
+	 */
+	@RequestMapping("/selectOptionList")
+	public List<Map> selectOptionList(){
+		return brandService.selectOptionList();
+
 	}
 }

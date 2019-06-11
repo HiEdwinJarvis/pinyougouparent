@@ -11,6 +11,7 @@ import com.jarvis.pinyougou.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description:品牌接口实现
@@ -86,5 +87,10 @@ public class BrandServiceImpl implements BrandService {
         Page<TbBrand> page = (Page<TbBrand>) brandMapper.selectByExample(example);
 
         return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    @Override
+    public List<Map> selectOptionList() {
+        return brandMapper.selectOptionList();
     }
 }
