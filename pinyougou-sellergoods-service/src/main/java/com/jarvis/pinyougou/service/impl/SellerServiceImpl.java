@@ -1,4 +1,5 @@
 package com.jarvis.pinyougou.service.impl;
+import java.util.Date;
 import java.util.List;
 
 import com.github.pagehelper.Page;
@@ -46,7 +47,12 @@ public class SellerServiceImpl implements SellerService {
 	 */
 	@Override
 	public void add(TbSeller seller) {
-		sellerMapper.insert(seller);		
+		//第一次添加时默认状态为0
+		System.out.println("进来了");
+		seller.setStatus("0");
+		seller.setCreateTime(new Date());
+
+		sellerMapper.insert(seller);
 	}
 
 	
@@ -159,5 +165,16 @@ public class SellerServiceImpl implements SellerService {
 		Page<TbSeller> page= (Page<TbSeller>)sellerMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+	@Override
+	public void updateStatus(String sellerId, String status) {
+		//先查到需要审核的记录
+		TbSeller tbSeller = sellerMapper.selectByPrimaryKey(sellerId);
+		//修改状态
+		tbSeller.setStatus(status);
+		sellerMapper.updateByPrimaryKey(tbSeller);
+
+
+	}
+
 }
