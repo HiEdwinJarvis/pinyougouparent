@@ -1,7 +1,6 @@
 package com.jarvis.pinyougou.service;
 
 import com.jarvis.entity.PageResult;
-import com.jarvis.pinyougou.pojo.TbItem;
 import com.jarvis.pinyougou.pojo.TbItemCat;
 
 import java.util.List;
@@ -11,13 +10,13 @@ import java.util.List;
  * @author Administrator
  *
  */
-public interface ItemService {
+public interface ItemCatService {
 
 	/**
 	 * 返回全部列表
 	 * @return
 	 */
-	public List<TbItem> findAll();
+	public List<TbItemCat> findAll();
 	
 	
 	/**
@@ -30,13 +29,13 @@ public interface ItemService {
 	/**
 	 * 增加
 	*/
-	public void add(TbItem item);
+	public void add(TbItemCat itemCat);
 	
 	
 	/**
 	 * 修改
 	 */
-	public void update(TbItem item);
+	public void update(TbItemCat itemCat);
 	
 
 	/**
@@ -44,7 +43,7 @@ public interface ItemService {
 	 * @param id
 	 * @return
 	 */
-	public TbItem findOne(Long id);
+	public TbItemCat findOne(Long id);
 	
 	
 	/**
@@ -59,7 +58,12 @@ public interface ItemService {
 	 * @param pageSize 每页记录数
 	 * @return
 	 */
-	public PageResult findPage(TbItem item, int pageNum, int pageSize);
+	public PageResult findPage(TbItemCat itemCat, int pageNum, int pageSize);
 
-
+	/**
+	 * 根据父Id查询下面的子列表
+	 * @param parentId
+	 * @return
+	 */
+	public List<TbItemCat> findByParentId(Long parentId);
 }

@@ -5,6 +5,8 @@ import com.github.pagehelper.Page;
 import com.jarvis.entity.PageResult;
 import com.jarvis.pinyougou.dao.mapper.TbItemMapper;
 import com.jarvis.pinyougou.pojo.TbItem;
+import com.jarvis.pinyougou.pojo.TbItemCat;
+import com.jarvis.pinyougou.pojo.TbItemCatExample;
 import com.jarvis.pinyougou.pojo.TbItemExample;
 import com.jarvis.pinyougou.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,5 +137,7 @@ public class ItemServiceImpl implements ItemService {
 		Page<TbItem> page= (Page<TbItem>)itemMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+
+
 }
