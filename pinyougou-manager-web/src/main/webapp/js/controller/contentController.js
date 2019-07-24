@@ -1,5 +1,5 @@
  //控制层 
-app.controller('contentController' ,function($scope,$controller   ,contentService){	
+app.controller('contentController' ,function($scope,$controller   ,contentService,uploadService,contentCategoryService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -73,8 +73,48 @@ app.controller('contentController' ,function($scope,$controller   ,contentServic
 			function(response){
 				$scope.list=response.rows;	
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
-			}			
+			}
 		);
 	}
-    
+
+	/*
+	* 上传广告图片
+	* */
+
+	$scope.uploadFile=function(){
+
+		uploadService.uploadFile().success(
+
+			function(response){
+				if(response.success){
+				$scope.entity.pic=response.message;
+			}else {
+					alert("上传失败");
+				}
+			}
+
+		),error(
+
+			function(){
+
+				alert("上传出错");
+			}
+		)
+	}
+
+/*广告分类列表用于添加广告时在下拉菜单中选择分类
+* 查找
+* */
+	$scope.findContentCategoryList=function(){
+		contentCategoryService.findAll().success(
+			function(response){
+				$scope.contentCategoryList=response;
+			}
+		);
+	}
+
+	
+	$scope.status=["无效","有效"];
+
+
 });	

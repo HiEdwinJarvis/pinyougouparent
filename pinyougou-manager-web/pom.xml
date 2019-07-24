@@ -96,13 +96,18 @@
             <scope>provided</scope>
         </dependency>
 
-
+        <!--引入商家接口依赖-->
         <dependency>
             <groupId>com.jarvis</groupId>
             <artifactId>pinyougou-sellergoods-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
+        <!--引入广告接口依赖-->
+        <dependency>
+            <groupId>com.jarvis</groupId>
+            <artifactId>pinyougou-content-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
@@ -116,6 +121,13 @@
         <dependency>
             <groupId>com.jarvis</groupId>
             <artifactId>pinyougou-pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--引入通用依赖-->
+        <dependency>
+            <groupId>com.jarvis</groupId>
+            <artifactId>pinyougou-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
