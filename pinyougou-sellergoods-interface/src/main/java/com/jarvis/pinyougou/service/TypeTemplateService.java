@@ -4,6 +4,7 @@ import com.jarvis.entity.PageResult;
 import com.jarvis.pinyougou.pojo.TbTypeTemplate;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 服务层接口
@@ -59,5 +60,8 @@ public interface TypeTemplateService {
 	 * @return
 	 */
 	public PageResult findPage(TbTypeTemplate typeTemplate, int pageNum, int pageSize);
+
+	//返回规格列表
+	public List<Map> findSpecList(Long id);
 	
 }

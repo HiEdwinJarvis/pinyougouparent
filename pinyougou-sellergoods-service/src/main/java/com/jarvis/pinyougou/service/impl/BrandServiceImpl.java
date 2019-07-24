@@ -10,6 +10,7 @@ import com.jarvis.pinyougou.pojo.TbBrand;
 import com.jarvis.pinyougou.pojo.TbBrandExample;
 import com.jarvis.pinyougou.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import java.util.Map;
  * @Version: 1.0
  */
 @Service
+@Transactional
 public class BrandServiceImpl implements BrandService {
 
     @Autowired

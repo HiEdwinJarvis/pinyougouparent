@@ -16,6 +16,7 @@ import com.github.pagehelper.PageHelper;
 
 
 import com.jarvis.entity.Result;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 服务实现层
@@ -23,6 +24,7 @@ import com.jarvis.entity.Result;
  *
  */
 @Service
+@Transactional
 public class ItemServiceImpl implements ItemService {
 
 	@Autowired

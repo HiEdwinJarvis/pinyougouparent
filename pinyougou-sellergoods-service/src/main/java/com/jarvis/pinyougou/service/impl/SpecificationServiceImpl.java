@@ -13,6 +13,7 @@ import com.jarvis.pinyougou.pojo.TbSpecificationOptionExample;
 import com.jarvis.pinyougou.pojogroup.Specification;
 import com.jarvis.pinyougou.service.SpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import java.util.Map;
  *
  */
 @Service
+@Transactional
 public class SpecificationServiceImpl implements SpecificationService {
 
 	@Autowired

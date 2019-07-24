@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jarvis.pinyougou.mapper.TbGoodsDescMapper" >
+<mapper namespace="com.jarvis.pinyougou.dao.mapper.TbGoodsDescMapper" >
   <resultMap id="BaseResultMap" type="com.jarvis.pinyougou.pojo.TbGoodsDesc" >
     <id column="goods_id" property="goodsId" jdbcType="BIGINT" />
     <result column="introduction" property="introduction" jdbcType="VARCHAR" />

@@ -10,6 +10,7 @@ import com.jarvis.pinyougou.pojo.TbItemCat;
 import com.jarvis.pinyougou.pojo.TbItemCatExample;
 import com.jarvis.pinyougou.service.ItemCatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
  *
  */
 @Service
+@Transactional
 public class ItemCatServiceImpl implements ItemCatService {
 
 	@Autowired

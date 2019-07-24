@@ -14,8 +14,8 @@ app.service('goodsService',function($http){
 		return $http.get('../goods/findOne.do?id='+id);
 	}
 	//增加 
-	this.add=function(entity){
-		return  $http.post('../goods/add.do',entity );
+	this.add=function(goods){
+		return  $http.post('../goods/add.do',goods );
 	}
 	//修改 
 	this.update=function(entity){

@@ -1,15 +1,19 @@
 package com.jarvis.pinyougou.service.impl;
 import java.util.List;
+import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.jarvis.entity.PageResult;
+import com.jarvis.pinyougou.dao.mapper.TbSpecificationMapper;
+import com.jarvis.pinyougou.dao.mapper.TbSpecificationOptionMapper;
 import com.jarvis.pinyougou.dao.mapper.TbTypeTemplateMapper;
-import com.jarvis.pinyougou.pojo.TbTypeTemplate;
-import com.jarvis.pinyougou.pojo.TbTypeTemplateExample;
+import com.jarvis.pinyougou.pojo.*;
 import com.jarvis.pinyougou.service.TypeTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 服务实现层
@@ -17,11 +21,14 @@ import com.github.pagehelper.PageHelper;
  *
  */
 @Service
+@Transactional
 public class TypeTemplateServiceImpl implements TypeTemplateService {
 
 	@Autowired
 	private TbTypeTemplateMapper typeTemplateMapper;
-	
+
+	@Autowired
+	private TbSpecificationOptionMapper specificationOptionMapper;
 	/**
 	 * 查询全部
 	 */
@@ -104,5 +111,26 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 		Page<TbTypeTemplate> page= (Page<TbTypeTemplate>)typeTemplateMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+	@Override
+	public List<Map> findSpecList(Long id) {
+		TbTypeTemplate typeTemplate = typeTemplateMapper.selectByPrimaryKey(id);
+		List<Map> list = JSON.parseArray(typeTemplate.getSpecIds(),Map.class);
+		for(Map map:list){
+			TbSpecificationOptionExample example = new TbSpecificationOptionExample();
+			TbSpecificationOptionExample.Criteria criteria = example.createCriteria();
+			criteria.andSpecIdEqualTo(new Long((Integer)map.get("id")));
+			List<TbSpecificationOption> options = specificationOptionMapper.selectByExample(example);
+			map.put("options", options);
+
+
+
+
+		}
+		return list;
+
+
+
+	}
+
 }

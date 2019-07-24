@@ -5,7 +5,9 @@ app.service('sellerService',function($http){
 	this.findAll=function(){
 		return $http.get('../seller/findAll.do');		
 	}
-	//分页 
+	//分页
+
+
 	this.findPage=function(page,rows){
 		return $http.get('../seller/findPage.do?page='+page+'&rows='+rows);
 	}
