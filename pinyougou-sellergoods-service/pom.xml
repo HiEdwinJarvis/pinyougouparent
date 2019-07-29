@@ -101,6 +101,13 @@
             <artifactId>commons-codec</artifactId>
         </dependency>
 
+        <!--引入commons依赖，用于做商品分类等的缓存-->
+        <dependency>
+            <groupId>com.jarvis</groupId>
+            <artifactId>pinyougou-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
 
     </dependencies>
 

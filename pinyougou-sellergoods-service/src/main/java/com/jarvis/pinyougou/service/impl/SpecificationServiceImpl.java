@@ -13,6 +13,7 @@ import com.jarvis.pinyougou.pojo.TbSpecificationOptionExample;
 import com.jarvis.pinyougou.pojogroup.Specification;
 import com.jarvis.pinyougou.service.SpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -32,6 +33,10 @@ public class SpecificationServiceImpl implements SpecificationService {
 
 	@Autowired
 	private TbSpecificationOptionMapper optionMapper;
+
+
+
+
 	/**
 	 * 查询全部
 	 */
@@ -168,5 +173,7 @@ public class SpecificationServiceImpl implements SpecificationService {
 	public List<Map> selectOptionList() {
 		return specificationMapper.selectOptionList();
 	}
+
+
 
 }

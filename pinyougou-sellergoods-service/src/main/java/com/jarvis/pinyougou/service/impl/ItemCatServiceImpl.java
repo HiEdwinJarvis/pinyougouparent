@@ -10,6 +10,7 @@ import com.jarvis.pinyougou.pojo.TbItemCat;
 import com.jarvis.pinyougou.pojo.TbItemCatExample;
 import com.jarvis.pinyougou.service.ItemCatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -25,12 +26,19 @@ public class ItemCatServiceImpl implements ItemCatService {
 
 	@Autowired
 	private TbItemCatMapper itemCatMapper;
+
+	/**
+	 *引入redisTemplate对象，操作redis
+	 * */
+	@Autowired
+	private RedisTemplate redisTemplate;
 	
 	/**
 	 * 查询全部
 	 */
 	@Override
 	public List<TbItemCat> findAll() {
+
 		return itemCatMapper.selectByExample(null);
 	}
 
@@ -105,6 +113,21 @@ public class ItemCatServiceImpl implements ItemCatService {
 		TbItemCatExample tbItemCatExample = new TbItemCatExample();
 		TbItemCatExample.Criteria criteria = tbItemCatExample.createCriteria();
 		criteria.andParentIdEqualTo(parentId);
+
+		/**
+		 * 		1,一次性读取缓存进行存取，
+		 * 		2,还有因为每次增删改查完后都要执行此方法
+		 *
+		 */
+
+		List<TbItemCat> list = findAll();
+		for(TbItemCat itemCat:list){
+
+			redisTemplate.boundHashOps("itemCat").put(itemCat.getName(),itemCat.getTypeId());
+
+		}
+		System.out.println("更新缓存商品分类表");
+
 		return itemCatMapper.selectByExample(tbItemCatExample);
 
 
