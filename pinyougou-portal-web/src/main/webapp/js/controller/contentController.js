@@ -8,4 +8,12 @@ app.controller("contentController",function($scope,contentService){
             }
         );
     }
+
+
+    //跳转到搜索
+    $scope.search=function(){
+        location.href="http://localhost:9104/pinyougousearchweb_war_exploded/search.html#?keywords="+$scope.keywords;
+
+    }
+
 });

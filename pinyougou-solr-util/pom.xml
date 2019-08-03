@@ -58,5 +58,7 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
+
+
     </dependencies>
 </project>

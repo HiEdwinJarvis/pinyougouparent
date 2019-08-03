@@ -2,6 +2,7 @@ package com.jarvis.pinyougou.service;
 
 import com.jarvis.entity.PageResult;
 import com.jarvis.pinyougou.pojo.TbGoods;
+import com.jarvis.pinyougou.pojo.TbItem;
 import com.jarvis.pinyougou.pojogroup.Goods;
 
 import java.util.List;
@@ -66,5 +67,14 @@ public interface GoodsService {
 *
 * */
 public void updateStatus(Long []ids,String status);
-	
+
+
+	/**
+	 *
+	 * 根据商品id和状态查询item表
+	 * */
+
+	public List<TbItem> findItemListByGoodsIdandStatus(Long[] ids,String status);
+
+
 }

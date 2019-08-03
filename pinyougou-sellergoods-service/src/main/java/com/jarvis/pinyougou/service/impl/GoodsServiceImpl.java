@@ -1,4 +1,5 @@
 package com.jarvis.pinyougou.service.impl;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -161,47 +162,45 @@ public class GoodsServiceImpl implements GoodsService {
 	
 	
 		@Override
-	public PageResult findPage(TbGoods goods, int pageNum, int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
-		
-		TbGoodsExample example=new TbGoodsExample();
-		TbGoodsExample.Criteria criteria = example.createCriteria();
-			criteria.andIsDeleteIsNull();//非删除状态
-		if(goods!=null){			
-						if(goods.getSellerId()!=null && goods.getSellerId().length()>0){
+		public PageResult findPage(TbGoods goods, int pageNum, int pageSize) {
+			PageHelper.startPage(pageNum, pageSize);
 
+			TbGoodsExample example=new TbGoodsExample();
+			TbGoodsExample.Criteria criteria = example.createCriteria();
 
-							//将这的模糊查询改为精确查询，因为这是俺商家的id查询自己的商品所以
-							//为了避免查到商家名字有包含关系的名字，二查到别人的商品，所以这里要使用精确查询
-							criteria.andSellerIdEqualTo(goods.getSellerId());
+			criteria.andIsDeleteIsNull();
+
+			if(goods!=null){
+				if(goods.getSellerId()!=null && goods.getSellerId().length()>0){
+					criteria.andSellerIdEqualTo(goods.getSellerId());
+				}
+				if(goods.getGoodsName()!=null && goods.getGoodsName().length()>0){
+					criteria.andGoodsNameLike("%"+goods.getGoodsName()+"%");
+				}
+				if(goods.getAuditStatus()!=null && goods.getAuditStatus().length()>0){
+					criteria.andAuditStatusLike("%"+goods.getAuditStatus()+"%");
+				}
+				if(goods.getIsMarketable()!=null && goods.getIsMarketable().length()>0){
+					criteria.andIsMarketableLike("%"+goods.getIsMarketable()+"%");
+				}
+				if(goods.getCaption()!=null && goods.getCaption().length()>0){
+					criteria.andCaptionLike("%"+goods.getCaption()+"%");
+				}
+				if(goods.getSmallPic()!=null && goods.getSmallPic().length()>0){
+					criteria.andSmallPicLike("%"+goods.getSmallPic()+"%");
+				}
+				if(goods.getIsEnableSpec()!=null && goods.getIsEnableSpec().length()>0){
+					criteria.andIsEnableSpecLike("%"+goods.getIsEnableSpec()+"%");
+				}
+				if(goods.getIsDelete()!=null && goods.getIsDelete().length()>0){
+					criteria.andIsDeleteLike("%"+goods.getIsDelete()+"%");
+				}
+
 			}
-			if(goods.getGoodsName()!=null && goods.getGoodsName().length()>0){
-				criteria.andGoodsNameLike("%"+goods.getGoodsName()+"%");
-			}
-			if(goods.getAuditStatus()!=null && goods.getAuditStatus().length()>0){
-				criteria.andAuditStatusLike("%"+goods.getAuditStatus()+"%");
-			}
-			if(goods.getIsMarketable()!=null && goods.getIsMarketable().length()>0){
-				criteria.andIsMarketableLike("%"+goods.getIsMarketable()+"%");
-			}
-			if(goods.getCaption()!=null && goods.getCaption().length()>0){
-				criteria.andCaptionLike("%"+goods.getCaption()+"%");
-			}
-			if(goods.getSmallPic()!=null && goods.getSmallPic().length()>0){
-				criteria.andSmallPicLike("%"+goods.getSmallPic()+"%");
-			}
-			if(goods.getIsEnableSpec()!=null && goods.getIsEnableSpec().length()>0){
-				criteria.andIsEnableSpecLike("%"+goods.getIsEnableSpec()+"%");
-			}
-			if(goods.getIsDelete()!=null && goods.getIsDelete().length()>0){
-				criteria.andIsDeleteLike("%"+goods.getIsDelete()+"%");
-			}
-	
+
+			Page<TbGoods> page= (Page<TbGoods>)goodsMapper.selectByExample(example);
+			return new PageResult(page.getTotal(), page.getResult());
 		}
-		
-		Page<TbGoods> page= (Page<TbGoods>)goodsMapper.selectByExample(example);		
-		return new PageResult(page.getTotal(), page.getResult());
-	}
 
 	@Override
 	public void updateStatus(Long[] ids, String status) {
@@ -210,6 +209,23 @@ public class GoodsServiceImpl implements GoodsService {
 			goods.setAuditStatus(status);
 			goodsMapper.updateByPrimaryKey(goods);
 		}
+
+	}
+
+	@Override
+	public List<TbItem> findItemListByGoodsIdandStatus(Long[] ids, String status) {
+		System.out.println("进来了");
+		TbItemExample example=new TbItemExample();
+		TbItemExample.Criteria criteria = example.createCriteria();
+		criteria.andGoodsIdIn(Arrays.asList(ids));
+		criteria.andStatusEqualTo(status);
+		List<TbItem> list = itemMapper.selectByExample(example);
+		System.out.println(list.size()+"=============");
+		for(TbItem item : list){
+
+			System.out.println(item.getTitle());
+		}
+		return itemMapper.selectByExample(example);
 
 	}
 
