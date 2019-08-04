@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jarvis.entity.PageResult;
 import com.jarvis.entity.Result;
+import com.jarvis.pinyougou.page.service.ItemPageService;
 import com.jarvis.pinyougou.pojo.TbGoods;
 import com.jarvis.pinyougou.pojo.TbItem;
 import com.jarvis.pinyougou.pojogroup.Goods;
@@ -118,6 +119,12 @@ public class GoodsController {
 				}else{
 					System.out.println("没有明细数据");
 				}
+
+				//静态页生成
+				for(Long goodsId:ids){
+					itemPageService.genItemHtml(goodsId);
+				}
+
 			}
 			return new Result(true, "成功");
 		} catch (Exception e) {
@@ -125,5 +132,18 @@ public class GoodsController {
 			return new Result(false, "失败");
 		}		
 	}
-	
+
+	@Reference
+	private ItemPageService itemPageService;
+
+	/**
+	 * 生成静态页面，测试
+	 * */
+	@RequestMapping("/genHtml")
+	public void genHtml(Long goodsId){
+
+		itemPageService.genItemHtml(goodsId);
+	}
+
+
 }

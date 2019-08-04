@@ -137,6 +137,13 @@
             <artifactId>pinyougou-search-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!--页面静态化接口-->
+        <dependency>
+            <groupId>com.jarvis</groupId>
+            <artifactId>pinyougou-page-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

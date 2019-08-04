@@ -12,7 +12,7 @@
     <artifactId>pinyougou-common</artifactId>
     <packaging>jar</packaging>
 
-    <name>pinyougou-common Maven Webapp</name>
+    <name>pinyougou-common</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
