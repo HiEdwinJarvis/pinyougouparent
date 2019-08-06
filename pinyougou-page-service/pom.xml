@@ -62,7 +62,7 @@
             <artifactId>spring-test</artifactId>
         </dependency>
         <!-- dubbo相关 -->
-        <dependency>
+      <!--  <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
         </dependency>
@@ -73,7 +73,7 @@
         <dependency>
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -93,6 +93,14 @@
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
         </dependency>
+
+        <!--activemq-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-client</artifactId>
+            <version>5.13.4</version>
+        </dependency>
+
 
 
 
