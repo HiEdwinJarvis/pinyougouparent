@@ -37,4 +37,6 @@ app.service('userService',function($http){
 
 		return $http.get("user/sendCode.do?phone="+phone);
 	}
+
+
 });
