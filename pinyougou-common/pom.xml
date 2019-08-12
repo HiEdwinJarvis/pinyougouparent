@@ -48,6 +48,14 @@
             <version>1.7.2.RELEASE</version>
         </dependency>
 
+        <!--servlet-api包-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
     </dependencies>
 
    <!-- <build>
