@@ -8,6 +8,7 @@ import com.jarvis.pinyougou.common.CookieUtil;
 import com.jarvis.pinyougou.pojogroup.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -91,7 +92,16 @@ public class CartController {
     }
 
     @RequestMapping("/addGoodsToCartList")
+    @CrossOrigin(origins="http://localhost:9104/pinyougou_page_web_war_exploded")
     public Result addGoodsIoCartList(Long itemId,Integer num){
+
+        /**
+         * cors 解决js跨域请求
+         *
+         */
+        //response.setHeader("Access-Control-Allow-Origin", "http://localhost:9104/pinyougou_page_web_war_exploded/");
+        //response.setHeader("Access-Control-Allow-Credentials", "true");
+
 
 
         System.out.println("进来2");

@@ -1,4 +1,4 @@
-app.controller("itemController",function($scope){
+app.controller("itemController",function($scope,$http){
 	
 	$scope.specificationItems={};//存储用户选择的规格
 	
@@ -64,7 +64,22 @@ app.controller("itemController",function($scope){
 	
 	//添加商品到购物车
 	$scope.addToCart=function(){
-		alert('SKUID:'+$scope.sku.id );		
+
+		$http.get('http://localhost:9107/pinyougou_cart_web_war_exploded/cart/addGoodsToCartList.do?itemId='+$scope.sku.id+'&num='+$scope.num,{'withCredentials':true}).success(
+			function(response){
+
+				if(response.success){
+					alert(response.message);
+					location.href='http://localhost:9107/pinyougou_cart_web_war_exploded/cart.html';
+				}else{
+
+					alert(response.message);
+				}
+			}
+		)
+
+
+
 	}
 	
 	
